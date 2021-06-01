@@ -13,7 +13,7 @@ def citrus_press_factory(press_type):
     }
 
     def citrus_press(fruit):
-
+        """Makes fresh juice from a fruit."""
         compatible_fruit_types = compatible_fruit_types_lookup[press_type]
 
         print(compatible_fruit_types)
