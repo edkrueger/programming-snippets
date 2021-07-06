@@ -3,7 +3,7 @@ def citrus_press_factory(press_type):
     press_types = {"lime", "lemon", "orange", "grapefruit"}
 
     if not press_type in press_types:
-        raise ValueError(f"press_type must be one of {press_type}")
+        raise ValueError(f"press_type must be one of {press_types}")
 
     compatible_fruit_types_lookup = {
         "lime": {"lime", "lemon"},
@@ -15,8 +15,6 @@ def citrus_press_factory(press_type):
     def citrus_press(fruit):
         """Makes fresh juice from a fruit."""
         compatible_fruit_types = compatible_fruit_types_lookup[press_type]
-
-        print(compatible_fruit_types)
 
         if not fruit in compatible_fruit_types:
             raise ValueError(f"fruit must be one of {compatible_fruit_types}")
