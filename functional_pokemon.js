@@ -1,3 +1,6 @@
+/**
+ * ES6 Class representing a Pokemon.
+ */
 class Pokemon {
 
 	constructor(name, cry){
@@ -15,7 +18,10 @@ class Pokemon {
 
 }
 
-function PokemonGenerator(name, cry){
+/**
+ * Mutable "Class" representing a Pokemon.
+ */
+function MutablePokemonGenerator(name, cry){
 	return {
 		name: name,
 		cry: cry, 
@@ -29,24 +35,45 @@ function PokemonGenerator(name, cry){
 	}
 }
 
+/**
+ * Immutable "Class" representing a Pokemon.
+ */
+ function ImmutablePokemonGenerator(name, cry){
+	return Object.freeze({
+		makeCry: function (){
+			return `${name} cries ${cry}`
+		},
 
-pikachu = new Pokemon("pikachu", "pika")
+		faint: function(){
+			return `${name} cries ${cry} and faints`
+		}
+	})
+}
+
+// demo of ES6 class
+let pikachu = new Pokemon("pikachu", "pika")
 console.log(pikachu.makeCry())
 console.log(pikachu.faint())
 console.log(pikachu.name)
 console.log(pikachu)
+pikachu.cry = "pikapika"
+console.log(pikachu.makeCry())
 
-// this is implements the the behavior as a class
-pikachuObject = PokemonGenerator("pikachu", "pika")
-console.log(pikachuObject.makeCry())
-console.log(pikachuObject.faint())
-console.log(pikachuObject.name)
-console.log(pikachuObject)
+// demo of mutable "class" 
+let pikachuObjectMutable = MutablePokemonGenerator("pikachu", "pika")
+console.log(pikachuObjectMutable.makeCry())
+console.log(pikachuObjectMutable.faint())
+console.log(pikachuObjectMutable.name)
+console.log(pikachuObjectMutable)
+pikachuObjectMutable.cry = "pikapika"
+console.log(pikachuObjectMutable.makeCry())
 
-// this really behave like you'd expect from a class instance
-pikachuObject.cry = "pikapika"
-console.log(pikachuObject.cry)
-console.log(pikachuObject.makeCry())
-
-
-
+// demo of immutable "class" 
+let pikachuObjectImmutable = ImmutablePokemonGenerator("pikachu", "pika")
+console.log(pikachuObjectImmutable.makeCry())
+console.log(pikachuObjectImmutable.faint())
+console.log(pikachuObjectImmutable.name)
+console.log(pikachuObjectImmutable)
+pikachuObjectImmutable.cry = "pikapika" // this doesn't do anything because the object is frozen
+console.log(pikachuObjectImmutable.makeCry()) // same as last time
+console.log(pikachuObjectImmutable) // same as last time
