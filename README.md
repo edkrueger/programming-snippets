@@ -1,2 +1,2 @@
-# programming-nuggetz
-A bunch of codez
+# programming-snippets
+
